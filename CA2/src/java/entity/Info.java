@@ -16,7 +16,7 @@ import javax.persistence.Id;
  * @author Casper
  */
 @Entity
-public class Info implements Serializable {
+public abstract class Info implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

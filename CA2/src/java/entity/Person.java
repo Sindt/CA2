@@ -10,16 +10,15 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
 
 /**
  *
  * @author Sindt
  */
 @Entity
-public class Person implements Serializable {
-    private static final long serialVersionUID = 1L;
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+public class Person extends Info implements Serializable {
+
     private String firstName;
     private String lastName;
 
@@ -39,5 +38,4 @@ public class Person implements Serializable {
         this.lastName = lastName;
     }
 
-    
 }
