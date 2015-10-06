@@ -21,6 +21,24 @@ public class Address implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    private String Street;
+    private String AdditionalInfo;
+
+    public String getStreet() {
+        return Street;
+    }
+
+    public void setStreet(String Street) {
+        this.Street = Street;
+    }
+
+    public String getAdditionalInfo() {
+        return AdditionalInfo;
+    }
+
+    public void setAdditionalInfo(String AdditionalInfo) {
+        this.AdditionalInfo = AdditionalInfo;
+    }
 
     public Long getId() {
         return id;

@@ -20,39 +20,50 @@ public class Company implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private String name;
+    private String description;
+    private String cvr;
+    private String NumEmployees;
+    private String marketValue;
 
-    public Long getId() {
-        return id;
+    public String getName() {
+        return name;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
-        return hash;
+    public String getDescription() {
+        return description;
     }
 
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Company)) {
-            return false;
-        }
-        Company other = (Company) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
-            return false;
-        }
-        return true;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
-    @Override
-    public String toString() {
-        return "entity.Company[ id=" + id + " ]";
+    public String getCvr() {
+        return cvr;
+    }
+
+    public void setCvr(String cvr) {
+        this.cvr = cvr;
+    }
+
+    public String getNumEmployees() {
+        return NumEmployees;
+    }
+
+    public void setNumEmployees(String NumEmployees) {
+        this.NumEmployees = NumEmployees;
+    }
+
+    public String getMarketValue() {
+        return marketValue;
+    }
+
+    public void setMarketValue(String marketValue) {
+        this.marketValue = marketValue;
     }
     
 }
