@@ -10,26 +10,28 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
  * @author Sindt
  */
 @Entity
-public class Company implements Serializable {
+@XmlRootElement
+public class Company extends Info implements Serializable {
 
-    private String name;
+    private String company_name;
     private String description;
     private String cvr;
-    private String NumEmployees;
+    private int NumEmployees;
     private String marketValue;
 
-    public String getName() {
-        return name;
+    public String getCompany_name() {
+        return company_name;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setCompany_name(String company_name) {
+        this.company_name = company_name;
     }
 
     public String getDescription() {
@@ -48,15 +50,15 @@ public class Company implements Serializable {
         this.cvr = cvr;
     }
 
-    public String getNumEmployees() {
+    public int getNumEmployees() {
         return NumEmployees;
     }
 
-    public void setNumEmployees(String NumEmployees) {
+    public void setNumEmployees(int NumEmployees) {
         this.NumEmployees = NumEmployees;
     }
 
-    public String getMarketValue() {
+    String getMarketValue() {
         return marketValue;
     }
 

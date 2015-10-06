@@ -5,7 +5,9 @@
  */
 package facade;
 
+import interfaces.IFCompanyFacade;
 import entity.Company;
+import entity.Person;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -28,12 +30,27 @@ public class CompanyFacade implements IFCompanyFacade {
 
     @Override
     public Company getCompany(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        EntityManager em = getEntityManager();
+        try {
+            Company c = em.find(Company.class, id);
+            return c;
+        } finally {
+            em.close();
+        }
+
     }
 
     @Override
     public Company addCompany(Company c) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        EntityManager em = getEntityManager();
+        try {
+            em.getTransaction().begin();
+            em.persist(c);
+            em.getTransaction().commit();
+            return c;
+        } finally {
+            em.close();
+        }
     }
 
     @Override

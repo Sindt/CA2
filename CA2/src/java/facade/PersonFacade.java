@@ -5,6 +5,7 @@
  */
 package facade;
 
+import interfaces.IFPersonFacade;
 import entity.Person;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -22,29 +23,52 @@ public class PersonFacade implements IFPersonFacade {
         emf = e;
     }
 
-    public EntityManager getEntityManager() {
-        return emf.createEntityManager();
-    }
-
     @Override
     public Person getPerson(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        EntityManager em = emf.createEntityManager();
+        try {
+            Person p = em.find(Person.class, id);
+            return p;
+        } finally {
+            em.close();
+        }
     }
 
     @Override
     public Person addPerson(Person p) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        EntityManager em = emf.createEntityManager();
+        try {
+            em.getTransaction().begin();
+            em.persist(p);
+            em.getTransaction().commit();
+            return p;
+        } finally {
+            em.close();
+        }
     }
 
     @Override
     public Person deletePerson(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        EntityManager em = emf.createEntityManager();
+        try {
+            Person p = em.find(Person.class, id);
+            em.getTransaction().begin();
+            em.remove(p);
+            em.getTransaction().commit();
+            return p;
+        } finally {
+            em.close();
+        }
     }
 
     @Override
     public List<Person> getPersons() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        EntityManager em = emf.createEntityManager();
+        try {
+            return em.createQuery("select p from Person p").getResultList();
+        } finally {
+            em.close();
+        }
     }
-
 
 }
