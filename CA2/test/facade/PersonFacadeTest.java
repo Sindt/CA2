@@ -9,7 +9,6 @@ import entity.Person;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
-import static org.hamcrest.core.Is.is;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -25,6 +24,7 @@ import org.junit.Ignore;
 public class PersonFacadeTest {
 
     PersonFacade facade = new PersonFacade(Persistence.createEntityManagerFactory("pu_test"));
+    private int id = -1;
 
     public PersonFacadeTest() {
     }
@@ -40,6 +40,18 @@ public class PersonFacadeTest {
     @Before
     public void setUp() {
         EntityManager em = facade.getEntityManager();
+        try {
+            em.getTransaction().begin();
+            em.createQuery("delete from Person").executeUpdate();
+            Person p = new Person("Ole", "Hansen", 1);
+            em.persist(p);
+            em.persist(new Person("Hanne", "Hansen", 1));
+            em.persist(new Person("Peter", "Olsen", 1));
+            em.getTransaction().commit();
+            id = p.getId();
+        } finally {
+            em.close();
+        }
     }
 
     @After
@@ -61,23 +73,19 @@ public class PersonFacadeTest {
     @Test
     public void testGetPerson() {
         System.out.println("getPerson");
-        Person p = facade.getPerson(1);
-        assertEquals(p.getFirstName(), "bob");
+        Person p = facade.getPerson(id);
+        assertEquals(p.getFirstName(), "Ole");
     }
 
     /**
      * Test of addPerson method, of class PersonFacade.
      */
-    @Ignore
+    @Test
     public void testAddPerson() {
         System.out.println("addPerson");
-        Person p = null;
-        PersonFacade instance = null;
-        Person expResult = null;
-        Person result = instance.addPerson(p);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        Person person = facade.addPerson(new Person("Ole", "Bole", 1));
+        person = facade.getPerson(person.getId());
+        assertEquals("Ole", person.getFirstName());
     }
 
     /**
@@ -86,8 +94,8 @@ public class PersonFacadeTest {
     @Test
     public void testDeletePerson() {
         System.out.println("deletePerson");
-        facade.deletePerson(2);
-        assertEquals(facade.getPersons().size(), 1);
+        facade.deletePerson(id);
+        assertEquals(facade.getPersons().size(), 2);
     }
 
     /**
@@ -97,7 +105,7 @@ public class PersonFacadeTest {
     public void testGetPersons() {
         System.out.println("getPersons");
         List<Person> result = facade.getPersons();
-        assertThat(result.size(), is(2));
+        assertNotNull(result);
     }
 
 }

@@ -33,7 +33,7 @@ public class CompanyResource {
     @Context
     private UriInfo context;
 
-    CompanyFacade facade = new CompanyFacade(Persistence.createEntityManagerFactory("pu_test"));
+    CompanyFacade facade = new CompanyFacade(Persistence.createEntityManagerFactory("pu_prod"));
 
     /**
      * Creates a new instance of CompanyResource

@@ -22,9 +22,10 @@ public class Person extends Info implements Serializable {
     public Person() {
     }
 
-    public Person(String firstName, String lastName) {
+    public Person(String firstName, String lastName, Integer address_id) {
         this.firstName = firstName;
         this.lastName = lastName;
+        this.address_id = address_id;
     }
 
     public Integer getAddress_id() {

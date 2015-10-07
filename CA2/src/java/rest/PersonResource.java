@@ -33,7 +33,7 @@ public class PersonResource {
     @Context
     private UriInfo context;
 
-    PersonFacade facade = new PersonFacade(Persistence.createEntityManagerFactory("pu_test"));
+    PersonFacade facade = new PersonFacade(Persistence.createEntityManagerFactory("pu_prod"));
 
     public PersonResource() {
     }
