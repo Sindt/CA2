@@ -5,6 +5,8 @@
  */
 package rest;
 
+import entity.Company;
+import entity.Person;
 import facade.CompanyFacade;
 import facade.JSONConvert;
 import javax.persistence.Persistence;
@@ -12,10 +14,11 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.Produces;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
-import javax.ws.rs.PUT;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
@@ -44,20 +47,35 @@ public class CompanyResource {
      * @return an instance of java.lang.String
      */
     @GET
-    @Path("{id}")
+    @Path("complete/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getPerson(@PathParam("id") int id) {
         return Response.ok(JSONConvert.getJSONFromCompany(facade.getCompany(id))).build();
     }
 
-    /**
-     * PUT method for updating or creating an instance of CompanyResource
-     *
-     * @param content representation for the resource
-     * @return an HTTP response with content of the updated or created resource.
-     */
-    @PUT
-    @Consumes("application/json")
-    public void putJson(String content) {
+    @GET
+    @Path("complete")
+    @Produces(MediaType.APPLICATION_JSON)
+    public String getCompany() {
+        return JSONConvert.getJSONFromCompany(facade.getCompanys());
+
+    }
+
+    @POST
+    @Path("complete")
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    public String saveCompany(String company) {
+        Company c = JSONConvert.getCompanyFromJson(company);
+        c = facade.addCompany(c);
+        return JSONConvert.getJSONFromCompany(c);
+    }
+
+    @DELETE
+    @Path("complete/{id}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public String deleteCompany(@PathParam("id") int id) {
+        Company c = facade.deleteCompany(id);
+        return JSONConvert.getJSONFromCompany(c);
     }
 }

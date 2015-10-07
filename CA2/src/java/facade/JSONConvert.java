@@ -26,20 +26,22 @@ public class JSONConvert {
     }
 
     public static String getJSONFromPerson(Person p) {
-        JsonObject jo = new JsonObject();
         return gson.toJson(p);
     }
 
     public static String getJSONFromPerson(List<Person> persons) {
         return gson.toJson(persons);
     }
-    
-    
-    public static Company getCompanyFromJson(String js){
+
+    public static Company getCompanyFromJson(String js) {
         return gson.fromJson(js, Company.class);
     }
-    
-    public static String getJSONFromCompany(Company c){
+
+    public static String getJSONFromCompany(Company c) {
+        return gson.toJson(c);
+    }
+
+    public static String getJSONFromCompany(List<Company> c) {
         return gson.toJson(c);
     }
 

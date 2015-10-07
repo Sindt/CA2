@@ -9,6 +9,7 @@ import entity.Company;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
+import static org.hamcrest.core.Is.is;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -102,15 +103,11 @@ public class CompanyFacadeTest {
     /**
      * Test of getCompanys method, of class CompanyFacade.
      */
-    @Ignore
+    @Test
     public void testGetCompanys() {
         System.out.println("getCompanys");
-        CompanyFacade instance = null;
-        List<Company> expResult = null;
-        List<Company> result = instance.getCompanys();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        List<Company> result = facade.getCompanys();
+        assertThat(result.size(), is(2));
     }
     
 }

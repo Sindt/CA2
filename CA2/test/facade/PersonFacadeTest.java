@@ -8,8 +8,8 @@ package facade;
 import entity.Person;
 import java.util.List;
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import static org.hamcrest.core.Is.is;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -98,15 +98,11 @@ public class PersonFacadeTest {
     /**
      * Test of getPersons method, of class PersonFacade.
      */
-    @Ignore
+    @Test
     public void testGetPersons() {
         System.out.println("getPersons");
-        PersonFacade instance = null;
-        List<Person> expResult = null;
-        List<Person> result = instance.getPersons();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        List<Person> result = facade.getPersons();
+        assertThat(result.size(), is(2));
     }
 
 }

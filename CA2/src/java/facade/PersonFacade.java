@@ -10,6 +10,7 @@ import entity.Person;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.Query;
 
 /**
  *
@@ -29,13 +30,15 @@ public class PersonFacade implements IFPersonFacade {
 
     public Person getCompletePerson(int id) {
         EntityManager em = getEntityManager();
+        Person p;
         try {
-            Person p = (Person) em.createQuery("select a, p from Person p JOIN p.address_id a").getSingleResult();
-            
-            return p;
+            Query q = em.createQuery("select p from Person p JOIN p.address_id a WHERE a.id = :id");
+            q.setParameter("p", id);
+            p = (Person) q.getSingleResult();
         } finally {
             em.close();
         }
+        return p;
 
     }
 

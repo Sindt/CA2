@@ -5,6 +5,7 @@
  */
 package rest;
 
+import entity.Person;
 import facade.JSONConvert;
 import facade.PersonFacade;
 import javax.persistence.Persistence;
@@ -12,8 +13,10 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.Produces;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PUT;
 import javax.ws.rs.core.MediaType;
@@ -55,21 +58,27 @@ public class PersonResource {
     }
 
     @GET
-    @Path("{id}")
+    @Path("test/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getCompletePerson(@PathParam("id") int id) {
-        System.out.println("");
-        return Response.ok(JSONConvert.getJSONFromPerson(facade.getPerson(id))).build();
+        return Response.ok(JSONConvert.getJSONFromPerson(facade.getCompletePerson(id))).build();
     }
 
-    /**
-     * PUT method for updating or creating an instance of PersonResource
-     *
-     * @param content representation for the resource
-     * @return an HTTP response with content of the updated or created resource.
-     */
-    @PUT
-    @Consumes("application/json")
-    public void putJson(String content) {
+    @POST
+    @Path("complete")
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    public String savePerson(String person) {
+        Person p = JSONConvert.getPersonFromJson(person);
+        p = facade.addPerson(p);
+        return JSONConvert.getJSONFromPerson(p);
+    }
+
+    @DELETE
+    @Path("complete/{id}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public String deletePerson(@PathParam("id") int id) {
+        Person p = facade.deletePerson(id);
+        return JSONConvert.getJSONFromPerson(p);
     }
 }

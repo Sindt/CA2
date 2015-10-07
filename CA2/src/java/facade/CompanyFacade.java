@@ -55,12 +55,27 @@ public class CompanyFacade implements IFCompanyFacade {
 
     @Override
     public Company deleteCompany(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        EntityManager em = getEntityManager();
+        try {
+            Company c = em.find(Company.class, id);
+            em.getTransaction().begin();
+            em.remove(c);
+            em.getTransaction().commit();
+            return c;
+        } finally {
+            em.close();
+        }
     }
 
     @Override
     public List<Company> getCompanys() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
+        EntityManager em = getEntityManager();
+        try {
+            return em.createQuery("select c from Company c").getResultList();
+        } finally {
+            em.close();
+        }
     }
 
 }
