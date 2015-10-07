@@ -32,6 +32,7 @@ public class JSONConvert {
     public static String getJSONFromPerson(List<Person> persons) {
         return gson.toJson(persons);
     }
+    
 
     public static Company getCompanyFromJson(String js) {
         return gson.fromJson(js, Company.class);

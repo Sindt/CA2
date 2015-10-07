@@ -17,6 +17,7 @@ public class Person extends Info implements Serializable {
 
     private String firstName;
     private String lastName;
+    private Integer address_id;
 
     public Person() {
     }
@@ -24,6 +25,14 @@ public class Person extends Info implements Serializable {
     public Person(String firstName, String lastName) {
         this.firstName = firstName;
         this.lastName = lastName;
+    }
+
+    public Integer getAddress_id() {
+        return address_id;
+    }
+
+    public void setAddress_id(Integer address_id) {
+        this.address_id = address_id;
     }
 
     public String getFirstName() {
@@ -41,6 +50,5 @@ public class Person extends Info implements Serializable {
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
-
 
 }

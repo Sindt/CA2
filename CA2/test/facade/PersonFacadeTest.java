@@ -83,16 +83,11 @@ public class PersonFacadeTest {
     /**
      * Test of deletePerson method, of class PersonFacade.
      */
-    @Ignore
+    @Test
     public void testDeletePerson() {
         System.out.println("deletePerson");
-        int id = 0;
-        PersonFacade instance = null;
-        Person expResult = null;
-        Person result = instance.deletePerson(id);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        facade.deletePerson(2);
+        assertEquals(facade.getPersons().size(), 1);
     }
 
     /**

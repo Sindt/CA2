@@ -61,11 +61,12 @@ public class PersonResource {
     @Path("test/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getCompletePerson(@PathParam("id") int id) {
-        return Response.ok(JSONConvert.getJSONFromPerson(facade.getCompletePerson(id))).build();
+        
+        return null;
+        //return Response.ok(JSONConvert.getJSONFromPerson(facade.getCompletePerson(id))).build();
     }
 
     @POST
-    @Path("complete")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     public String savePerson(String person) {

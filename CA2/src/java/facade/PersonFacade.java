@@ -28,20 +28,6 @@ public class PersonFacade implements IFPersonFacade {
         return emf.createEntityManager();
     }
 
-    public Person getCompletePerson(int id) {
-        EntityManager em = getEntityManager();
-        Person p;
-        try {
-            Query q = em.createQuery("select p from Person p JOIN p.address_id a WHERE a.id = :id");
-            q.setParameter("p", id);
-            p = (Person) q.getSingleResult();
-        } finally {
-            em.close();
-        }
-        return p;
-
-    }
-
     @Override
     public Person getPerson(int id) {
         EntityManager em = getEntityManager();
