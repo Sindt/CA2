@@ -20,18 +20,18 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 public class Company extends Info implements Serializable {
 
-    private String company_name;
+    private String name;
     private String description;
     private String cvr;
     private int NumEmployees;
     private String marketValue;
 
-    public String getCompany_name() {
-        return company_name;
+    public String getName() {
+        return name;
     }
 
-    public void setCompany_name(String company_name) {
-        this.company_name = company_name;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getDescription() {

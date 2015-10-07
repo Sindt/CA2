@@ -19,17 +19,17 @@ import javax.persistence.Id;
 public class CityInfo implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-    private String zipCode;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+    private String zip;
     private String city;
 
-    public String getZipCode() {
-        return zipCode;
+    public String getZip() {
+        return zip;
     }
 
-    public void setZipCode(String zipCode) {
-        this.zipCode = zipCode;
+    public void setZip(String zip) {
+        this.zip = zip;
     }
 
     public String getCity() {
@@ -40,11 +40,11 @@ public class CityInfo implements Serializable {
         this.city = city;
     }
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

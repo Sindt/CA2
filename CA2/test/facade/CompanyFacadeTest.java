@@ -66,7 +66,7 @@ public class CompanyFacadeTest {
         System.out.println("getCompany");
         int id = 1;
         Company c = facade.getCompany(id);
-        assertEquals(c.getCompany_name(), "test");
+        assertEquals(c.getName(), "test");
     }
 
     /**

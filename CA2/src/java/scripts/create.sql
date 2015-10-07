@@ -1,27 +1,32 @@
-CREATE TABLE INFO(
-id BIGINT primary key,
-email VARCHAR(255)
-);
-
 CREATE TABLE Person (
-id BIGINT primary key,
+id BIGINT primary key AUTO_INCREMENT,
 email VARCHAR(255),
 firstname VARCHAR(255),
 lastname VARCHAR(255)
 );
 
 CREATE TABLE COMPANY(
-id BIGINT primary key,
+id BIGINT primary key AUTO_INCREMENT,
 email VARCHAR(255),
-company_name VARCHAR(225),
+name VARCHAR(225),
 description VARCHAR(255),
 cvr VARCHAR(255),
 numemployees BIGINT,
-marketvalue VARCHAR(255)
+marketvalue BIGINT
 );
+
+CREATE TABLE CITYINFO(
+id BIGINT primary key AUTO_INCREMENT,
+ZIP VARCHAR(255),
+CITY VARCHAR(255)
+);
+
+
 CREATE TABLE ADDRESS(
-id BIGINT primary key,
+id BIGINT primary key AUTO_INCREMENT,
 STREET VARCHAR(255),
-ADDITIONALinfo VARCHAR(255)
+ADDITIONALinfo VARCHAR(255),
+CITYINFO_Id BIGINT,
+foreign key (CITYINFO_ID) references CITYINFO(id) 
 );
 

@@ -39,7 +39,7 @@ public class PersonFacadeTest {
 
     @Before
     public void setUp() {
-       // EntityManager em = emf.createEntityManager();
+        EntityManager em = facade.getEntityManager();
     }
 
     @After

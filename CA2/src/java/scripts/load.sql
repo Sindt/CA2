@@ -1,8 +1,7 @@
-INSERT INTO address values(1,'vej 1','bla bla');
+INSERT INTO company (email,name,description,cvr,numemployees,marketvalue) values('mail@mail.dk', 'test', 'teste','tester',1,1234);
 
-INSERT INTO company values(1,'mail@mail.dk', 'test', 'teste','tester',1,'teeest');
+INSERT INTO person (email, firstname, lastname) values('email@mail.dk','bob','jensen');
 
-INSERT INTO info values (1,'mail@email.com');
+INSERT INTO CITYINFO (ZIP, CITY) VALUES ('2600', 'Glostrup');
 
-INSERT INTO person values(1,'email@mail.dk','bob','jensen');
-
+INSERT INTO address (STREET, ADDITIONALinfo, CITYINFO_ID)  values('vej 1','bla bla',1);

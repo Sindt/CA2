@@ -22,10 +22,13 @@ public class PersonFacade implements IFPersonFacade {
     public PersonFacade(EntityManagerFactory e) {
         emf = e;
     }
-
+    
+    public EntityManager getEntityManager() {
+    return emf.createEntityManager();
+  }
     @Override
     public Person getPerson(int id) {
-        EntityManager em = emf.createEntityManager();
+        EntityManager em = getEntityManager();
         try {
             Person p = em.find(Person.class, id);
             return p;
@@ -36,7 +39,7 @@ public class PersonFacade implements IFPersonFacade {
 
     @Override
     public Person addPerson(Person p) {
-        EntityManager em = emf.createEntityManager();
+        EntityManager em = getEntityManager();
         try {
             em.getTransaction().begin();
             em.persist(p);
@@ -49,7 +52,7 @@ public class PersonFacade implements IFPersonFacade {
 
     @Override
     public Person deletePerson(int id) {
-        EntityManager em = emf.createEntityManager();
+        EntityManager em = getEntityManager();
         try {
             Person p = em.find(Person.class, id);
             em.getTransaction().begin();
@@ -63,7 +66,7 @@ public class PersonFacade implements IFPersonFacade {
 
     @Override
     public List<Person> getPersons() {
-        EntityManager em = emf.createEntityManager();
+        EntityManager em = getEntityManager();
         try {
             return em.createQuery("select p from Person p").getResultList();
         } finally {
