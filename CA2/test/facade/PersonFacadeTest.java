@@ -8,34 +8,40 @@ package facade;
 import entity.Person;
 import java.util.List;
 import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import org.junit.Ignore;
 
 /**
  *
  * @author Sindt
  */
 public class PersonFacadeTest {
-    
+
+    PersonFacade facade = new PersonFacade(Persistence.createEntityManagerFactory("pu_test"));
+
     public PersonFacadeTest() {
     }
-    
+
     @BeforeClass
     public static void setUpClass() {
     }
-    
+
     @AfterClass
     public static void tearDownClass() {
     }
-    
+
     @Before
     public void setUp() {
+       // EntityManager em = emf.createEntityManager();
     }
-    
+
     @After
     public void tearDown() {
     }
@@ -43,7 +49,7 @@ public class PersonFacadeTest {
     /**
      * Test of getEntityManager method, of class PersonFacade.
      */
-    @Test
+    @Ignore
     public void testGetEntityManager() {
         System.out.println("getEntityManager");
         fail("The test case is a prototype.");
@@ -55,19 +61,14 @@ public class PersonFacadeTest {
     @Test
     public void testGetPerson() {
         System.out.println("getPerson");
-        int id = 0;
-        PersonFacade instance = null;
-        Person expResult = null;
-        Person result = instance.getPerson(id);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        Person p = facade.getPerson(1);
+        assertEquals(p.getFirstName(), "bob");
     }
 
     /**
      * Test of addPerson method, of class PersonFacade.
      */
-    @Test
+    @Ignore
     public void testAddPerson() {
         System.out.println("addPerson");
         Person p = null;
@@ -82,7 +83,7 @@ public class PersonFacadeTest {
     /**
      * Test of deletePerson method, of class PersonFacade.
      */
-    @Test
+    @Ignore
     public void testDeletePerson() {
         System.out.println("deletePerson");
         int id = 0;
@@ -97,7 +98,7 @@ public class PersonFacadeTest {
     /**
      * Test of getPersons method, of class PersonFacade.
      */
-    @Test
+    @Ignore
     public void testGetPersons() {
         System.out.println("getPersons");
         PersonFacade instance = null;
@@ -107,5 +108,5 @@ public class PersonFacadeTest {
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
-    
+
 }
