@@ -46,8 +46,14 @@ public class PersonResource {
     public Response getPerson(@PathParam("id") int id) {
         return Response.ok(JSONConvert.getJSONFromPerson(facade.getPerson(id))).build();
     }
-    
-    
+
+    @GET
+    @Path("complete")
+    @Produces(MediaType.APPLICATION_JSON)
+    public String getPerson() {
+        return JSONConvert.getJSONFromPerson(facade.getPersons());
+    }
+
     @GET
     @Path("{id}")
     @Produces(MediaType.APPLICATION_JSON)
