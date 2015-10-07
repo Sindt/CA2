@@ -22,10 +22,23 @@ public class PersonFacade implements IFPersonFacade {
     public PersonFacade(EntityManagerFactory e) {
         emf = e;
     }
-    
+
     public EntityManager getEntityManager() {
-    return emf.createEntityManager();
-  }
+        return emf.createEntityManager();
+    }
+
+    public Person getCompletePerson(int id) {
+        EntityManager em = getEntityManager();
+        try {
+            Person p = (Person) em.createQuery("select a, p from Person p JOIN p.address_id a").getSingleResult();
+            
+            return p;
+        } finally {
+            em.close();
+        }
+
+    }
+
     @Override
     public Person getPerson(int id) {
         EntityManager em = getEntityManager();

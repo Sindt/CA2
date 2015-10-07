@@ -7,7 +7,6 @@ package rest;
 
 import facade.JSONConvert;
 import facade.PersonFacade;
-import javax.inject.Inject;
 import javax.persistence.Persistence;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
@@ -42,9 +41,17 @@ public class PersonResource {
      * @return an instance of java.lang.String
      */
     @GET
-    @Path("{id}")
+    @Path("complete/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getPerson(@PathParam("id") int id) {
+        return Response.ok(JSONConvert.getJSONFromPerson(facade.getPerson(id))).build();
+    }
+    
+    
+    @GET
+    @Path("{id}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getCompletePerson(@PathParam("id") int id) {
         return Response.ok(JSONConvert.getJSONFromPerson(facade.getPerson(id))).build();
     }
 

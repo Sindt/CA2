@@ -8,6 +8,7 @@ package facade;
 import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonObject;
 import entity.Company;
 import entity.Person;
 import java.util.List;
@@ -25,6 +26,7 @@ public class JSONConvert {
     }
 
     public static String getJSONFromPerson(Person p) {
+        JsonObject jo = new JsonObject();
         return gson.toJson(p);
     }
 
