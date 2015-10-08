@@ -5,6 +5,7 @@
  */
 package rest;
 
+import deploy.DeploymentConfiguration;
 import entity.Person;
 import facade.JSONConvert;
 import facade.PersonFacade;
@@ -18,7 +19,6 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
-import javax.ws.rs.PUT;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
@@ -33,8 +33,8 @@ public class PersonResource {
     @Context
     private UriInfo context;
 
-    PersonFacade facade = new PersonFacade(Persistence.createEntityManagerFactory("pu_prod"));
-
+    PersonFacade facade = new PersonFacade(Persistence.createEntityManagerFactory(DeploymentConfiguration.PU_NAME));
+    
     public PersonResource() {
     }
 
