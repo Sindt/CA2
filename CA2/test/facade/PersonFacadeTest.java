@@ -5,6 +5,7 @@
  */
 package facade;
 
+import deploy.DeploymentConfiguration;
 import entity.Person;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -23,7 +24,7 @@ import org.junit.Ignore;
  */
 public class PersonFacadeTest {
 
-    PersonFacade facade = new PersonFacade(Persistence.createEntityManagerFactory("pu_test"));
+    PersonFacade facade = new PersonFacade(Persistence.createEntityManagerFactory(DeploymentConfiguration.PU_NAME));
     private int id = -1;
 
     public PersonFacadeTest() {
