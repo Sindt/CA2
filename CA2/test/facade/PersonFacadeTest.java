@@ -7,6 +7,7 @@ package facade;
 
 import deploy.DeploymentConfiguration;
 import entity.Person;
+import exceptions.PersonNotFoundException;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
@@ -89,7 +90,7 @@ public class PersonFacadeTest {
      * Test of getPerson method, of class PersonFacade.
      */
     @Test
-    public void testGetPerson() {
+    public void testGetPerson() throws PersonNotFoundException {
         System.out.println("getPerson");
         Person p = facade.getPerson(id1);
         assertEquals(p.getFirstName(), "Hanne");
@@ -99,7 +100,7 @@ public class PersonFacadeTest {
      * Test of addPerson method, of class PersonFacade.
      */
     @Test
-    public void testAddPerson() {
+    public void testAddPerson() throws PersonNotFoundException {
         System.out.println("addPerson");
         Person person = facade.addPerson(new Person("Ole", "Bole", 1));
         person = facade.getPerson(person.getId());
@@ -110,7 +111,7 @@ public class PersonFacadeTest {
      * Test of deletePerson method, of class PersonFacade.
      */
     @Test
-    public void testDeletePerson() {
+    public void testDeletePerson() throws PersonNotFoundException {
         System.out.println("deletePerson");
         facade.deletePerson(id);
         assertEquals(facade.getPersons().size(), 2);
