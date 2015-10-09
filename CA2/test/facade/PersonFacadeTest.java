@@ -25,7 +25,9 @@ import org.junit.Ignore;
 public class PersonFacadeTest {
 
     PersonFacade facade = new PersonFacade(Persistence.createEntityManagerFactory(DeploymentConfiguration.PU_NAME));
-    private int id = -1;
+    private int id;
+    private int id1;
+    private int id2;
 
     public PersonFacadeTest() {
     }
@@ -45,11 +47,15 @@ public class PersonFacadeTest {
             em.getTransaction().begin();
             em.createQuery("delete from Person").executeUpdate();
             Person p = new Person("Ole", "Hansen", 1);
+            Person p1 = new Person("Hanne", "Hansen", 1);
+            Person p2 = new Person("Peter", "Olsen", 1);
             em.persist(p);
-            em.persist(new Person("Hanne", "Hansen", 1));
-            em.persist(new Person("Peter", "Olsen", 1));
+            em.persist(p1);
+            em.persist(p2);
             em.getTransaction().commit();
             id = p.getId();
+            id1 = p1.getId();
+            id2 = p2.getId();
         } finally {
             em.close();
         }
@@ -57,6 +63,17 @@ public class PersonFacadeTest {
 
     @After
     public void tearDown() {
+        EntityManager em = facade.getEntityManager();
+        try {
+            Person p1 = em.find(Person.class, id1);
+            Person p2 = em.find(Person.class, id2);
+            em.getTransaction().begin();
+            em.remove(p1);
+            em.remove(p2);
+            em.getTransaction().commit();
+        } finally {
+            em.close();
+        }
     }
 
     /**
@@ -74,8 +91,8 @@ public class PersonFacadeTest {
     @Test
     public void testGetPerson() {
         System.out.println("getPerson");
-        Person p = facade.getPerson(id);
-        assertEquals(p.getFirstName(), "Ole");
+        Person p = facade.getPerson(id1);
+        assertEquals(p.getFirstName(), "Hanne");
     }
 
     /**

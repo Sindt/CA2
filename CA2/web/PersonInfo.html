@@ -41,6 +41,7 @@ and open the template in the editor.
                 return row;
             }
 
+
             function deletePerson(id) {
                 $.ajax({
                     url: "api/person/complete/" + id,
@@ -60,7 +61,7 @@ and open the template in the editor.
 
             function savePerson() {
                 var type = "POST";
-                var data = {firstName: $("#fname").val(), lastName: $("#lname").val(), email: $("#email").val(),address_id: $("#address").val()};
+                var data = {firstName: $("#fname").val(), lastName: $("#lname").val(), email: $("#email").val(), address_id: $("#address").val()};
                 if (!isAdding()) {
                     type = "PUT";
                     data.id = $("#id").val();

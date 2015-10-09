@@ -5,6 +5,7 @@
  */
 package rest;
 
+import deploy.DeploymentConfiguration;
 import entity.Company;
 import entity.Person;
 import facade.CompanyFacade;
@@ -33,7 +34,7 @@ public class CompanyResource {
     @Context
     private UriInfo context;
 
-    CompanyFacade facade = new CompanyFacade(Persistence.createEntityManagerFactory("pu_prod"));
+    CompanyFacade facade = new CompanyFacade(Persistence.createEntityManagerFactory(DeploymentConfiguration.PU_NAME));
 
     /**
      * Creates a new instance of CompanyResource

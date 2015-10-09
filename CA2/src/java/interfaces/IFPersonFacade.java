@@ -6,6 +6,7 @@
 package interfaces;
 
 import entity.Person;
+import exceptions.PersonNotFoundException;
 import java.util.List;
 
 /**
@@ -14,13 +15,13 @@ import java.util.List;
  */
 public interface IFPersonFacade {
 
-    Person getPerson(int id);
+    Person getPerson(int id) throws PersonNotFoundException;
 
     List<Person> getPersons();
 
     Person addPerson(Person p);
 
-    Person deletePerson(int id);
+    Person deletePerson(int id) throws PersonNotFoundException;  
     
 
 }

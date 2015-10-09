@@ -7,6 +7,7 @@ package rest;
 
 import deploy.DeploymentConfiguration;
 import entity.Person;
+import exceptions.PersonNotFoundException;
 import facade.JSONConvert;
 import facade.PersonFacade;
 import javax.persistence.Persistence;
@@ -46,7 +47,7 @@ public class PersonResource {
     @GET
     @Path("complete/{id}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getPerson(@PathParam("id") int id) {
+    public Response getPerson(@PathParam("id") int id) throws PersonNotFoundException {
         return Response.ok(JSONConvert.getJSONFromPerson(facade.getPerson(id))).build();
     }
 
@@ -78,7 +79,7 @@ public class PersonResource {
     @DELETE
     @Path("complete/{id}")
     @Produces(MediaType.APPLICATION_JSON)
-    public String deletePerson(@PathParam("id") int id) {
+    public String deletePerson(@PathParam("id") int id) throws PersonNotFoundException {
         Person p = facade.deletePerson(id);
         return JSONConvert.getJSONFromPerson(p);
     }
