@@ -9,9 +9,23 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Front page</title>
+        <link rel="stylesheet" href="Main.css"/>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <h1>Welcome</h1>
+        
+        <div id="box">
+            
+            <div id ="text">
+                <a href="https://github.com/Sindt/CA2">Link til gitHub</a>
+            </div>
+            
+            <div id ="text">
+                <a href="https://docs.google.com/document/d/1759KJuBuG0DdbFV2D1THsErIFr8i4B9CoOP-nSffs_Y/edit?usp=sharing">Dokumentation</a>
+            </div>
+            
+        </div>
+       
     </body>
 </html>
