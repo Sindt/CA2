@@ -10,20 +10,16 @@ import static org.hamcrest.Matchers.*;
 import static com.jayway.restassured.RestAssured.basePath;
 import static com.jayway.restassured.RestAssured.baseURI;
 import static com.jayway.restassured.RestAssured.defaultParser;
-import com.jayway.restassured.http.ContentType;
 import com.jayway.restassured.parsing.Parser;
 import facade.PersonFacade;
 import javax.persistence.EntityManagerFactory;
 import javax.ws.rs.core.MediaType;
 
-import javax.ws.rs.core.Response;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import static org.junit.Assert.*;
-import org.junit.Ignore;
 
 /**
  *

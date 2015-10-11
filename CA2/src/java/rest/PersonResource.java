@@ -35,7 +35,7 @@ public class PersonResource {
     private UriInfo context;
 
     PersonFacade facade = new PersonFacade(Persistence.createEntityManagerFactory(DeploymentConfiguration.PU_NAME));
-    
+
     public PersonResource() {
     }
 
@@ -52,6 +52,17 @@ public class PersonResource {
     }
 
     @GET
+    @Path("test")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getPersonxx(){
+        String pu = DeploymentConfiguration.PU_NAME;
+        String json = "{\"d\":\"\"" + pu +" \"}";
+        
+        
+        return Response.ok(json).build();
+    }
+
+    @GET
     @Path("complete")
     @Produces(MediaType.APPLICATION_JSON)
     public String getPerson() {
@@ -62,7 +73,7 @@ public class PersonResource {
     @Path("test/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getCompletePerson(@PathParam("id") int id) {
-        
+
         return null;
         //return Response.ok(JSONConvert.getJSONFromPerson(facade.getCompletePerson(id))).build();
     }
